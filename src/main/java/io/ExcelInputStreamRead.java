@@ -3,12 +3,10 @@ package io;
 import bean.TrstchTypeDTO;
 import cn.hutool.poi.excel.ExcelReader;
 import cn.hutool.poi.excel.ExcelUtil;
+import cn.hutool.poi.excel.ExcelWriter;
 import com.alibaba.fastjson.JSON;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,6 +34,19 @@ public class ExcelInputStreamRead {
 //                    .collect(Collectors.toList());
             System.out.println(list.toString());
             System.out.println(JSON.toJSONString(list));
+
+            File file2 = new File("C:\\Users\\acer\\Desktop\\甘肃移动在线省公司_转接类型整理.xlsx");
+            OutputStream outputStream = new FileOutputStream(file2);
+            ExcelWriter writer = ExcelUtil.getWriter(true);
+            writer.getWorkbook().setSheetName(0, "转接类型");
+            writer.addHeaderAlias("TRSTCH_TYPE_ID", "转接类型ID");
+            writer.addHeaderAlias("TRSTCH_TYPE_NM", "转接类型名称");
+            writer.addHeaderAlias("TRSTCH_TYPE_CD", "转接类型代码");
+            writer.addHeaderAlias("CTI_ID", "CTIID");
+
+            writer.write(list);
+            writer.flush(outputStream);
+            writer.close();
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
