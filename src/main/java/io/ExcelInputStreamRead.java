@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 public class ExcelInputStreamRead {
 
     public static void main(String[] args) {
-        File file = new File("C:\\Users\\acer\\Desktop\\甘肃移动在线省公司_排序.xlsx");
+        File file = new File("C:\\Users\\acer\\Desktop\\转接类型_排序.xlsx");
         try {
             InputStream inputStream = new FileInputStream(file);
             ExcelReader reader = ExcelUtil.getReader(inputStream, "t_chf_transfer2",true);
@@ -35,7 +35,7 @@ public class ExcelInputStreamRead {
             System.out.println(list.toString());
             System.out.println(JSON.toJSONString(list));
 
-            File file2 = new File("C:\\Users\\acer\\Desktop\\甘肃移动在线省公司_转接类型整理.xlsx");
+            File file2 = new File("C:\\Users\\acer\\Desktop\\转接类型整理.xlsx");
             OutputStream outputStream = new FileOutputStream(file2);
             ExcelWriter writer = ExcelUtil.getWriter(true);
             writer.getWorkbook().setSheetName(0, "转接类型");
